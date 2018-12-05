@@ -11,7 +11,7 @@ import sys
 # { Source array, tree and result }
 #WORDS = "Heap Array sorting by tree building q"
 #SOUP = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q"
-WORDS = "1234"
+WORDS = "123"
 SOUP = "1122337"
 def FixTree(iFrom, iTo, elC):
     """Universal function for sorting tree and leaves."""
@@ -45,22 +45,19 @@ def main():
     """
 
 # { Read unsorted array of words }
-#    for (i=0;iNumA < strlen(WORDS);i++) elA[++iNumA] = (int)words[i]
     iNumA = len(WORDS)
     elA = list(WORDS)
-    print("\n",elA,"\n")
+#    print("\n",elA,"\n")
 # { Read unsorted array of soup }
-#    for (i=0;iNumB < strlen(SOUP);i++) elB[++iNumB] = (int)soup[i]
     iNumB = len(SOUP)
     elB = list(SOUP)
-    print("\n",elB,"\n")
+#    print("\n",elB,"\n")
 
 # { Build a sorting trees }
-#  for ( i= iNumA >> 1; i >=1; i--) FixTree(i,iNumA,elA)
     for i in range(int(iNumA / 2), 0, -1):
         FixTree(i, iNumA, elA)
 #        print("* ", i, " ", iNumA,elA)
-#  for ( i= iNumB >> 1; i >=1; i--) FixTree(i,iNumB,elB)
+
     for i in range(int(iNumB / 2), 0, -1):
         FixTree(i, iNumB, elB)
 #        print("** ", i, " ", iNumB,elB)
@@ -69,18 +66,62 @@ def main():
     for i in range(iNumA, 1, -1):
         elA[0], elA[i-1] = elA[i-1], elA[0]
         FixTree(1, i-1, elA)
-        print("*-> ", iNumA, ", ", i-1,elA)
+#        print("*-> ", iNumA, ", ", i-1,elA)
 
-#  for (i=iNumB; i>=2; i-- )
     for i in range(iNumB, 1, -1):
         elB[0], elB[i-1] = elB[i-1], elB[0]
         FixTree(1, i-1, elB)
-        print("**-> ", iNumB, ", ", i-1,elB)
+#        print("**-> ", iNumB, ", ", i-1,elB)
 
 # { Displey the result }
     print("* Sorted arrays *\n")
     print(iNumA, elA);
     print(iNumB, elB);
+
+
+#  for(i=1,j=1;i<=iNumA;)
+    i = 1
+    j = 1
+    while i <= iNumA:
+        if elA[i-1] > elB[j-1]:
+            j += 1
+
+        print("i: ", i, ", j: ", j)
+        print("elA[i]: ", elA[i-1], ", elB[j]: ", elB[j-1])
+
+#        if i > iNumA:
+#            print("\nTrue2\n")
+#            return True
+
+
+
+        if elA[i-1] < elB[j-1]:
+            print("\nFalse1\n")
+            return False
+        if j > iNumB:
+            print("\nFalse3\n")
+            return False
+        if elA[i-1] == elB[j-1]: #and (i < iNumA):
+            if (i < iNumA) and (elA[i] < elB[j]):
+                print("\nFalse2\n")
+                return False
+            elif (i < iNumA) and (elA[i] >= elB[j]):
+                i += 1
+                j += 1
+            else:
+                i += 1
+
+
+#            print("End2 i: ", i, ", j: ", j)
+#            print("End2 elA[i]: ", elA[i-1], ", elB[j]: ", elB[j-1])
+
+
+            if i > iNumA:
+                print("\nTrue2\n")
+                return True
+
+#        else:
+#            i += 1
 
 
 
