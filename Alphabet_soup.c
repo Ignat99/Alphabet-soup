@@ -14,6 +14,15 @@
 	printf("%d \n",(elC)[(iNumC)]); \
     })
 
+#define \
+    SWAP(elTemp,elB) \
+    ({ \
+	(elTemp)=(elB)[1]; \
+	(elB)[1]=(elB)[i]; \
+	(elB)[i]=(elTemp); \
+    })
+
+
 typedef int TElement;
 int iNumA=0,iNumB=0,i,j;
 TElement elTemp;
@@ -61,17 +70,13 @@ void main(int argc, int *arhv [])
 // { Convert tree to array }
   for (i=iNumA; i>=2; i-- )
   {
-    elTemp=elA[1];
-    elA[1]=elA[i];
-    elA[i]=elTemp;
+    SWAP(elTemp,elA);
     FixTree(1,i-1,elA);
   }
 
   for (i=iNumB; i>=2; i-- )
   {
-    elTemp=elB[1];
-    elB[1]=elB[i];
-    elB[i]=elTemp;
+    SWAP(elTemp,elB);
     FixTree(1,i-1,elB);
   }
 
