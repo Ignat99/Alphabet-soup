@@ -28,9 +28,8 @@ int iNumA=0,iNumB=0,i,j;
 TElement elTemp;
 TElement elA[N_MAX]; // { Source array, tree and result }
 TElement elB[N_MAX];
-char words[] = "Heap Array sorting by tree building q\0";
-char soup[] = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q\0";
-
+char words[] = "Heap Array sorting by tree building q";
+char soup[] = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q";
 
 int FixTree(int iFrom, int iTo, TElement *elA)
 {
