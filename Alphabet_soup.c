@@ -20,11 +20,11 @@ TElement elTemp;
 TElement elA[N_MAX]; // { Source array, tree and result }
 TElement elB[N_MAX];
 //char cTemp; // { One symbol }
-//char words[] = "Heap Array sorting by tree building q\0";
-//char soup[] = "qwertyuiopasdfghjkl;'zxcvbnm,   Aee\0";
+char words[] = "Heap Array sorting by tree building q\0";
+char soup[] = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q\0";
 
-char words[] = "1231237\0";
-char soup[] = "1122334567\0";
+//char words[] = "1237";
+//char soup[] = "7112233";
 
 
 int FixTree(int iFrom, int iTo, TElement *elA)
@@ -130,17 +130,11 @@ void main(int argc, int *arhv [])
     if (elA[i]==elB[j])
     {
       if ((elA[i+1] < elB[j+1]) && (i<iNumA)) { printf("\nFalse2\n");break;}
-      else if (elA[i+1] > elB[j+1]) { i++;j++; }
-      else if (elA[i+1] == elB[j+1])
-      {
-        i++;
-        j++;
-      }
-      else if (j >= iNumB) { printf("\nFalse5\n");break;}
+      else if (elA[i+1] >= elB[j+1]) { i++;j++; }
       else {i++;}
+    printf("End2 i:%d, j:%d\n", i, j);
+    printf("End2 elA[i]:%d, elB[j]:%d\n", elA[i], elB[j]);
+      if (i > iNumA) { printf("\nTrue2\n"); break; }
     }
   }
-    printf("i:%d, j:%d\n", i, j);
-    printf("elA[i]:%d, elB[j]:%d\n", elA[i], elB[j]);
-  if ((i >= iNumA) && (j < iNumB)) printf("\nTrue\n");
 }
