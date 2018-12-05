@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h> // For strlen
 
-#define N_MAX 50
+#define N_MAX 100
 
 #define \
     PRINT(iNumC,elC) \
@@ -48,20 +48,15 @@ void main(int argc, int *arhv [])
 {
 
 // { Read unsorted array of words }
-  for (i=0;iNumA < strlen(words);i++) {
-    elA[++iNumA] = (int)words[i];
-  }
+  for (i=0;iNumA < strlen(words);i++) elA[++iNumA] = (int)words[i];
 
 // { Read unsorted array of soup }
-  for (i=0;iNumB < strlen(soup);i++) {
-    elB[++iNumB] = (int)soup[i];
-  }
+  for (i=0;iNumB < strlen(soup);i++) elB[++iNumB] = (int)soup[i];
 
 
-// { Build a sorting tree }
-  for ( i= (int)(iNumA / 2); i >=1; i--) FixTree(i,iNumA,elA);
-
-  for ( i= (int)(iNumB / 2); i >=1; i--) FixTree(i,iNumB,elB);
+// { Build a sorting trees }
+  for ( i= iNumA >> 1; i >=1; i--) FixTree(i,iNumA,elA);
+  for ( i= iNumB >> 1; i >=1; i--) FixTree(i,iNumB,elB);
 
 // { Convert tree to array }
   for (i=iNumA; i>=2; i-- )
