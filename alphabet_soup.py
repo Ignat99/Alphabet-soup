@@ -11,7 +11,7 @@ import sys
 # { Source array, tree and result }
 #WORDS = "Heap Array sorting by tree building q"
 #SOUP = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q"
-WORDS = "123"
+WORDS = "1235"
 SOUP = "1122337"
 
 def FixTree(iFrom, iTo, elC):
@@ -55,11 +55,11 @@ def main():
 
 
 # { Build a sorting trees }
-    for i in range(int(iNumA / 2), 0, -1):
+    for i in range(iNumA // 2, 0, -1):
         FixTree(i, iNumA, elA)
 
 
-    for i in range(int(iNumB / 2), 0, -1):
+    for i in range(iNumB // 2, 0, -1):
         FixTree(i, iNumB, elB)
 
 
@@ -85,14 +85,8 @@ def main():
         if elA[i-1] > elB[j-1]:
             j += 1
 
-        print("i: ", i, ", j: ", j)
-        print("elA[i]: ", elA[i-1], ", elB[j]: ", elB[j-1])
-
-#        if i > iNumA:
-#            print("\nTrue2\n")
-#            return True
-
-
+#        print("i: ", i, ", j: ", j)
+#        print("elA[i]: ", elA[i-1], ", elB[j]: ", elB[j-1])
 
         if elA[i-1] < elB[j-1]:
             print("\nFalse1\n")
@@ -100,7 +94,7 @@ def main():
         if j > iNumB:
             print("\nFalse3\n")
             return False
-        if elA[i-1] == elB[j-1]: #and (i < iNumA):
+        if elA[i-1] == elB[j-1]:
             if (i < iNumA) and (elA[i] < elB[j]):
                 print("\nFalse2\n")
                 return False
@@ -110,18 +104,9 @@ def main():
             else:
                 i += 1
 
-
-#            print("End2 i: ", i, ", j: ", j)
-#            print("End2 elA[i]: ", elA[i-1], ", elB[j]: ", elB[j-1])
-
-
             if i > iNumA:
                 print("\nTrue2\n")
                 return True
-
-#        else:
-#            i += 1
-
 
 
 if __name__ == '__main__':
