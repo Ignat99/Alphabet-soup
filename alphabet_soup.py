@@ -8,7 +8,6 @@
 from __future__ import print_function
 import sys
 
-# { Source array, tree and result }
 #WORDS = "Heap Array sorting by tree building q"
 #SOUP = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q"
 WORDS = "123"
@@ -39,6 +38,7 @@ def FixTree(iFrom, iTo, elC):
 
     elC[iFrom-1] = elTop
 
+# { Source arrays, trees and result }
 def main(words, soup):
     """
     if you can write your message of WORDS with t
