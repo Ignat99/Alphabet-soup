@@ -13,30 +13,30 @@ import sys
 WORDS = "123"
 SOUP = "112233"
 
-def FixTree(iFrom, iTo, elC):
+def fix_tree(i_from, i_to, el_c):
     """Universal function for sorting tree and leaves."""
-    elTop = elC[iFrom-1]
+    el_top = el_c[i_from-1]
     while True:
-        iFromTwice = iFrom*2
-        if iFromTwice > iTo:
+        i_from_twice = i_from*2
+        if i_from_twice > i_to:
             break
         else:
-            elLeft = elC[iFromTwice-1]
-            if iFromTwice == iTo:
-                elRight = elLeft
+            el_left = el_c[i_from_twice-1]
+            if i_from_twice == i_to:
+                el_right = el_left
             else:
-                elRight = elC[iFromTwice]
+                el_right = el_c[i_from_twice]
 
-            if (elRight > elTop) and (elRight > elLeft):
-                elC[iFrom-1] = elRight
-                iFrom = iFromTwice+1
-            elif elLeft > elTop:
-                elC[iFrom-1] = elLeft
-                iFrom = iFromTwice
+            if (el_right > el_top) and (el_right > el_left):
+                el_c[i_from-1] = el_right
+                i_from = i_from_twice+1
+            elif el_left > el_top:
+                el_c[i_from-1] = el_left
+                i_from = i_from_twice
             else:
                 break
 
-    elC[iFrom-1] = elTop
+    el_c[i_from-1] = el_top
 
 # { Source arrays, trees and result }
 def main(words, soup):
@@ -46,70 +46,69 @@ def main(words, soup):
     """
 
 # { Read unsorted array of words }
-    iNumA = len(words)
-    elA = list(words)
+    i_num_a = len(words)
+    el_a = list(words)
 
 # { Read unsorted array of soup }
-    iNumB = len(soup)
-    elB = list(soup)
+    i_num_b = len(soup)
+    el_b = list(soup)
 
 
 # { Build a sorting trees }
-    for i in range(iNumA // 2, 0, -1):
-        FixTree(i, iNumA, elA)
+    for i in range(i_num_a // 2, 0, -1):
+        fix_tree(i, i_num_a, el_a)
 
 
-    for i in range(iNumB // 2, 0, -1):
-        FixTree(i, iNumB, elB)
+    for i in range(i_num_b // 2, 0, -1):
+        fix_tree(i, i_num_b, el_b)
 
 
 # { Convert tree to array }
-    for i in range(iNumA, 1, -1):
-        elA[0], elA[i-1] = elA[i-1], elA[0]
-        FixTree(1, i-1, elA)
+    for i in range(i_num_a, 1, -1):
+        el_a[0], el_a[i-1] = el_a[i-1], el_a[0]
+        fix_tree(1, i-1, el_a)
 
 
-    for i in range(iNumB, 1, -1):
-        elB[0], elB[i-1] = elB[i-1], elB[0]
-        FixTree(1, i-1, elB)
+    for i in range(i_num_b, 1, -1):
+        el_b[0], el_b[i-1] = el_b[i-1], el_b[0]
+        fix_tree(1, i-1, el_b)
 
 
 # { Displey the result }
-    print("* Sorted arrays *\n")
-    print(iNumA, elA);
-    print(iNumB, elB);
+    print("* Sorted arrays *")
+    print(i_num_a, el_a)
+    print(i_num_b, el_b)
 
     i = 1
     j = 1
-    while i <= iNumA and j <= iNumB:
-        if j <= iNumB and elA[i-1] > elB[j-1]:
+    while i <= i_num_a and j <= i_num_b:
+        if j <= i_num_b and el_a[i-1] > el_b[j-1]:
             j += 1
 
-        if j <= iNumB and elA[i-1] < elB[j-1]:
-            print("\nFalse1\n")
+        if j <= i_num_b and el_a[i-1] < el_b[j-1]:
+            print("False1")
             return False
-        if j > iNumB:
-            print("\nFalse3\n")
+        if j > i_num_b:
+            print("False3")
             return False
-        if (j <= iNumB) and elA[i-1] == elB[j-1]:
-            print(i,j)
-            if (j == iNumB) and (i == iNumA):
-                print("\nTrue1\n", i)
+        if (j <= i_num_b) and el_a[i-1] == el_b[j-1]:
+            if (j == i_num_b) and (i == i_num_a):
+                print("True1")
                 return True
-            if (j == iNumB) and (i < iNumA):
-                print("\nFalse4\n",i,j)
+            if (j == i_num_b) and (i < i_num_a):
+                print("False4")
                 return False
-            elif  (i < iNumA) and (elA[i] < elB[j]):
-                print("\nFalse2\n",i,j)
+            elif  (i < i_num_a) and (el_a[i] < el_b[j]):
+                print("False2")
                 return False
-            elif (i < iNumA) and (j < iNumB) and (elA[i] >= elB[j]):
+            elif (i < i_num_a) and (j < i_num_b) and (el_a[i] >= el_b[j]):
                 i += 1
                 j += 1
             else:
                 i += 1
 
-            if i > iNumA:
-                print("\nTrue2\n")
+            if i > i_num_a:
+                print("True2")
                 return True
 
 
