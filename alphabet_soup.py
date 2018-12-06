@@ -11,8 +11,8 @@ import sys
 # { Source array, tree and result }
 #WORDS = "Heap Array sorting by tree building q"
 #SOUP = "qwertyuiopasdfghjklzxcvbnm   AHeerray sorting by tree building q"
-WORDS = "1235"
-SOUP = "1122337"
+WORDS = "123"
+SOUP = "112233"
 
 def FixTree(iFrom, iTo, elC):
     """Universal function for sorting tree and leaves."""
@@ -39,19 +39,19 @@ def FixTree(iFrom, iTo, elC):
 
     elC[iFrom-1] = elTop
 
-def main():
+def main(words, soup):
     """
     if you can write your message of WORDS with t
     he letters found in your bowl of SOUP
     """
 
 # { Read unsorted array of words }
-    iNumA = len(WORDS)
-    elA = list(WORDS)
+    iNumA = len(words)
+    elA = list(words)
 
 # { Read unsorted array of soup }
-    iNumB = len(SOUP)
-    elB = list(SOUP)
+    iNumB = len(soup)
+    elB = list(soup)
 
 
 # { Build a sorting trees }
@@ -81,24 +81,28 @@ def main():
 
     i = 1
     j = 1
-    while i <= iNumA:
-        if elA[i-1] > elB[j-1]:
+    while i <= iNumA and j <= iNumB:
+        if j <= iNumB and elA[i-1] > elB[j-1]:
             j += 1
 
-#        print("i: ", i, ", j: ", j)
-#        print("elA[i]: ", elA[i-1], ", elB[j]: ", elB[j-1])
-
-        if elA[i-1] < elB[j-1]:
+        if j <= iNumB and elA[i-1] < elB[j-1]:
             print("\nFalse1\n")
             return False
         if j > iNumB:
             print("\nFalse3\n")
             return False
-        if elA[i-1] == elB[j-1]:
-            if (i < iNumA) and (elA[i] < elB[j]):
-                print("\nFalse2\n")
+        if (j <= iNumB) and elA[i-1] == elB[j-1]:
+            print(i,j)
+            if (j == iNumB) and (i == iNumA):
+                print("\nTrue1\n", i)
+                return True
+            if (j == iNumB) and (i < iNumA):
+                print("\nFalse4\n",i,j)
                 return False
-            elif (i < iNumA) and (elA[i] >= elB[j]):
+            elif  (i < iNumA) and (elA[i] < elB[j]):
+                print("\nFalse2\n",i,j)
+                return False
+            elif (i < iNumA) and (j < iNumB) and (elA[i] >= elB[j]):
                 i += 1
                 j += 1
             else:
@@ -109,5 +113,7 @@ def main():
                 return True
 
 
+
+
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(main(WORDS, SOUP))
